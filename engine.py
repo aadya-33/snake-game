@@ -11,6 +11,7 @@ class GameState:
     alive: bool
     height: int
     width: int
+    paused: bool=False
 
 
 def new_game(height: int, width: int) -> GameState:
@@ -78,3 +79,6 @@ def move(state: GameState) -> GameState:
         candidate = replace(candidate, momo=spawn_food(candidate))
 
     return candidate
+
+def toggle_pause(state: GameState) -> GameState:
+    return replace(state, paused=not state.paused)

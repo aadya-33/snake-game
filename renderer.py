@@ -50,7 +50,10 @@ def draw(stdscr, state: GameState) -> None:
 
 
 def draw_score(stdscr, state: GameState) -> None:
-    stdscr.addstr(0, 0, f"Score: {state.score}")
+    status = f"Score: (state.score)"
+    if state.paused:
+        status = " PAUSED (p to resume)"
+    stdscr.addstr(0, 0, status)
 
 
 def draw_game_over(stdscr, state: GameState) -> None:
@@ -61,3 +64,4 @@ def draw_game_over(stdscr, state: GameState) -> None:
     col = max(state.width // 2 - len(message) // 2, 0) + BOARD_COL_OFFSET
     stdscr.addstr(row, col, message)
     stdscr.refresh()
+
